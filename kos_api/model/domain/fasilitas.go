@@ -6,7 +6,7 @@ type Fasilitas struct {
 	NamaFasilitas string `json:"nama_fasilitas" gorm:"type:varchar(255);not null"`
 
 	// M:M with kost
-	Kost []Kost `json:"kost" gorm:"many2many:fasilitas_kost"`
+	Kost []Kos `json:"kos" gorm:"many2many:fasilitas"`
 }
 
 func (Fasilitas) TableName() string {

@@ -2,7 +2,7 @@ package domain
 
 import "time"
 
-type Kost struct {
+type Kos struct {
 	ID                 uint64    `json:"id" gorm:"primaryKey;autoIncrement;type=bigint not null;unique"`
 	UserID             uint64    `json:"user_id" gorm:"not null"`
 	Nama               string    `json:"nama" gorm:"type:varchar(255);not null"`
@@ -16,9 +16,9 @@ type Kost struct {
 	DeletedAt          time.Time `json:"deleted_at" gorm:"column:deleted_at;type:DATETIME;index"`
 
 	// M:M with fasilitas
-	Fasilitas []Fasilitas `json:"fasilitas" gorm:"many2many:fasilitas_kost"`
+	Fasilitas []Fasilitas `json:"fasilitas" gorm:"many2many:fasilitas"`
 }
 
-func (Kost) TableName() string {
+func (Kos) TableName() string {
 	return "kos"
 }

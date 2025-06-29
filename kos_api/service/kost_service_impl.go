@@ -19,7 +19,7 @@ func NewKostService(kostRepo repositories.KostRepository) KostService {
 	}
 }
 
-func (s *KostServiceImpl) GetAllKostService(filters web.FilterKostRequest) ([]domain.Kost, error) {
+func (s *KostServiceImpl) GetAllKostService(filters web.FilterKostRequest) ([]domain.Kos, error) {
 	//validasi struct
 	err := s.validate.Struct(filters)
 	if err != nil {
@@ -35,17 +35,17 @@ func (s *KostServiceImpl) GetAllKostService(filters web.FilterKostRequest) ([]do
 	return kost, nil
 }
 
-func (s *KostServiceImpl) GetByIDKostService(id uint) (domain.Kost, error) {
+func (s *KostServiceImpl) GetByIDKostService(id uint) (domain.Kos, error) {
 	//validate.Var untuk validasi satu variable
 	err := s.validate.Var(id, "required,gt=0")
 	if err != nil {
-		return domain.Kost{}, err
+		return domain.Kos{}, err
 	}
 
 	//repository
 	kost, err := s.kostRepo.FindByIDKostRepository(id)
 	if err != nil {
-		return domain.Kost{}, err
+		return domain.Kos{}, err
 	}
 
 	return kost, nil

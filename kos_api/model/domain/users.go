@@ -12,7 +12,7 @@ type Users struct {
 	DeletedAt    time.Time `json:"deleted_at" gorm:"column:deleted_at;type:DATETIME;index"`
 
 	// 1:M ke table kos
-	Kosts []Kost `json:"kosts" gorm:"foreignKey:UserID"`
+	Kosts []Kos `json:"kosts" gorm:"foreignKey:UserID"`
 }
 
 func (Users) TableName() string {

@@ -14,11 +14,11 @@ func NewKostRepository(db *gorm.DB) KostRepository {
 	return &KostRepositoryImpl{db: db}
 }
 
-func (r *KostRepositoryImpl) FindAllKostRepository(filters web.FilterKostRequest) ([]domain.Kost, error) {
-	var kosts []domain.Kost
+func (r *KostRepositoryImpl) FindAllKostRepository(filters web.FilterKostRequest) ([]domain.Kos, error) {
+	var kos []domain.Kos
 
 	//pilih model yg dijalankan untuk  query => select * from kost
-	query := r.db.Model(&domain.Kost{})
+	query := r.db.Model(&domain.Kos{})
 
 	//filter
 	if filters.Nama != "" {
@@ -42,20 +42,20 @@ func (r *KostRepositoryImpl) FindAllKostRepository(filters web.FilterKostRequest
 
 	//eager loading
 	query = query.Preload("Fasilitas")
-	err := query.Find(&kosts).Error
+	err := query.Find(&kos).Error
 	if err != nil {
 		return nil, err
 	}
-	return kosts, nil
+	return kos, nil
 }
 
-func (r *KostRepositoryImpl) FindByIDKostRepository(id uint) (domain.Kost, error) {
-	var kos domain.Kost
+func (r *KostRepositoryImpl) FindByIDKostRepository(id uint) (domain.Kos, error) {
+	var kos domain.Kos
 
 	//Preload berdasarkan id => "where id = ?"
 	err := r.db.Preload("Fasilitas").First(&kos, id).Error // &kos => simpan data di variable kos
 	if err != nil {
-		return domain.Kost{}, err
+		return domain.Kos{}, err
 	}
 
 	return kos, nil
