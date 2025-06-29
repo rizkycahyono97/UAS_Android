@@ -21,11 +21,12 @@ func NewKostController(service service.KostService) *KostController {
 func (ks *KostController) GetAllKostController(c *fiber.Ctx) error {
 	//validasi query params
 	allowedParams := map[string]bool{
-		"nama":     true,
-		"tipe":     true,
-		"status":   true,
-		"minHarga": true,
-		"maxHarga": true,
+		"nama":                true,
+		"tipe":                true,
+		"status_ketersediaan": true,
+		"alamat":              true,
+		"minHarga":            true,
+		"maxHarga":            true,
 	}
 	sentParams := c.Queries()
 
@@ -79,6 +80,14 @@ func (ks *KostController) GetAllKostController(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusInternalServerError).JSON(web.ApiResponse{
 			Code:    "500",
 			Message: "Internal Server Error",
+			Data:    nil,
+		})
+	}
+
+	if len(kost) == 0 {
+		return c.Status(fiber.StatusNotFound).JSON(web.ApiResponse{
+			Code:    "404",
+			Message: "kost not found",
 			Data:    nil,
 		})
 	}
