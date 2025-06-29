@@ -1,10 +1,12 @@
 package controllers
 
 import (
+	"errors"
 	"github.com/go-playground/validator/v10"
 	"github.com/gofiber/fiber/v2"
 	"github.com/rizkycahyono97/UAS_Android/model/web"
 	"github.com/rizkycahyono97/UAS_Android/service"
+	"gorm.io/gorm"
 	"strconv"
 )
 
@@ -86,5 +88,52 @@ func (ks *KostController) GetAllKostController(c *fiber.Ctx) error {
 		Code:    "200",
 		Message: "OK",
 		Data:    kost,
+	})
+}
+
+func (ks *KostController) GetKostByIdController(c *fiber.Ctx) error {
+	//ambil parameternya
+	idStr := c.Params("id")
+
+	// parsing dari string ke uint
+	id, err := strconv.ParseUint(idStr, 10, 32)
+	if err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(web.ApiResponse{
+			Code:    "400",
+			Message: "Invalid ID Format",
+			Data:    nil,
+		})
+	}
+
+	//service
+	kos, err := ks.service.GetByIDKostService(uint(id))
+	if err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			return c.Status(fiber.StatusNotFound).JSON(web.ApiResponse{
+				Code:    "404",
+				Message: "Kost Not Found",
+				Data:    nil,
+			})
+		}
+
+		if _, ok := err.(validator.ValidationErrors); ok {
+			return c.Status(fiber.StatusBadRequest).JSON(web.ApiResponse{
+				Code:    "400",
+				Message: "Invalid ID Format",
+				Data:    nil,
+			})
+		}
+
+		return c.Status(fiber.StatusInternalServerError).JSON(web.ApiResponse{
+			Code:    "500",
+			Message: "Internal Server Error",
+			Data:    nil,
+		})
+	}
+
+	return c.Status(fiber.StatusOK).JSON(web.ApiResponse{
+		Code:    "200",
+		Message: "OK",
+		Data:    kos,
 	})
 }

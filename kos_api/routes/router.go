@@ -15,4 +15,5 @@ func SetupRoutes(app *fiber.App, kostController *controllers.KostController) {
 
 	kostRoutes := r.Group("/v1")
 	kostRoutes.Get("/kosts", kostController.GetAllKostController)
+	kostRoutes.Get("/kosts/kos/:id", kostController.GetKostByIdController)
 }
