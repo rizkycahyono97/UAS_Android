@@ -16,7 +16,7 @@ func NewKostController(service service.KostService) *KostController {
 	return &KostController{service: service}
 }
 
-func (ks *KostController) GetAllController(c *fiber.Ctx) error {
+func (ks *KostController) GetAllKostController(c *fiber.Ctx) error {
 	//instance object
 	filters := web.FilterKostRequest{}
 
@@ -42,7 +42,7 @@ func (ks *KostController) GetAllController(c *fiber.Ctx) error {
 	}
 
 	//panggil service
-	kost, err := ks.service.GetAllService(filters)
+	kost, err := ks.service.GetAllKostService(filters)
 	if err != nil {
 		//jika error dari validasi service
 		if _, ok := err.(validator.ValidationErrors); ok {

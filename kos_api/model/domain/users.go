@@ -14,3 +14,7 @@ type Users struct {
 	// 1:M ke table kos
 	Kosts []Kost `json:"kosts" gorm:"foreignKey:UserID"`
 }
+
+func (Users) TableName() string {
+	return "users"
+}

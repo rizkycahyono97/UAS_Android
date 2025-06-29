@@ -14,7 +14,7 @@ func NewKostRepository(db *gorm.DB) KostRepository {
 	return &KostRepositoryImpl{db: db}
 }
 
-func (r *KostRepositoryImpl) FindAllRepository(filters web.FilterKostRequest) ([]domain.Kost, error) {
+func (r *KostRepositoryImpl) FindAllKostRepository(filters web.FilterKostRequest) ([]domain.Kost, error) {
 	var kosts []domain.Kost
 
 	//pilih model yg dijalankan untuk  query => select * from kost
@@ -49,7 +49,7 @@ func (r *KostRepositoryImpl) FindAllRepository(filters web.FilterKostRequest) ([
 	return kosts, nil
 }
 
-func (r *KostRepositoryImpl) FindByIDRepository(id uint) (domain.Kost, error) {
+func (r *KostRepositoryImpl) FindByIDKostRepository(id uint) (domain.Kost, error) {
 	var kos domain.Kost
 
 	//Preload berdasarkan id => "where id = ?"

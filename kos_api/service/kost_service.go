@@ -6,6 +6,6 @@ import (
 )
 
 type KostService interface {
-	GetAllService(filters web.FilterKostRequest) ([]domain.Kost, error)
-	GetByIDService(id uint) (domain.Kost, error)
+	GetAllKostService(filters web.FilterKostRequest) ([]domain.Kost, error)
+	GetByIDKostService(id uint) (domain.Kost, error)
 }

@@ -8,3 +8,7 @@ type Fasilitas struct {
 	// M:M with kost
 	Kost []Kost `json:"kost" gorm:"many2many:fasilitas_kost"`
 }
+
+func (Fasilitas) TableName() string {
+	return "fasilitas"
+}

@@ -6,6 +6,6 @@ import (
 )
 
 type KostRepository interface {
-	FindAllRepository(filters web.FilterKostRequest) ([]domain.Kost, error)
-	FindByIDRepository(id uint) (domain.Kost, error)
+	FindAllKostRepository(filters web.FilterKostRequest) ([]domain.Kost, error)
+	FindByIDKostRepository(id uint) (domain.Kost, error)
 }
