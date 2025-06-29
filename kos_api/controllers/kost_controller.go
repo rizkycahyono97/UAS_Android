@@ -17,7 +17,27 @@ func NewKostController(service service.KostService) *KostController {
 }
 
 func (ks *KostController) GetAllKostController(c *fiber.Ctx) error {
-	//instance object
+	//validasi query params
+	allowedParams := map[string]bool{
+		"nama":     true,
+		"tipe":     true,
+		"status":   true,
+		"minHarga": true,
+		"maxHarga": true,
+	}
+	sentParams := c.Queries()
+
+	for paramName := range sentParams {
+		if !allowedParams[paramName] {
+			return c.Status(fiber.StatusBadRequest).JSON(web.ApiResponse{
+				Code:    "400",
+				Message: "query params tidak valid",
+				Data:    nil,
+			})
+		}
+	}
+
+	//validasi untuk field query paramsnya
 	filters := web.FilterKostRequest{}
 
 	filters.Nama = c.Query("nama")

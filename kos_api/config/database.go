@@ -33,11 +33,11 @@ var DB *gorm.DB
 // If any step fails, the function will panic with an appropriate error message.
 func InitDB() {
 	// Retrieve database configuration from environment variables with default values.
-	dbUser := GetEnv("DB_USER", "root")
-	dbPassword := GetEnv("DB_PASSWORD", "root")
+	dbUser := GetEnv("DB_USER", "")
+	dbPassword := GetEnv("DB_PASSWORD", "")
 	dbHost := GetEnv("DB_HOST", "127.0.0.1")
 	dbPort := GetEnv("DB_PORT", "3306")
-	dbName := GetEnv("DB_NAME", "uas_android")
+	dbName := GetEnv("DB_NAME", "")
 
 	// Construct the Data Source Name (DSN) for MySQL connection.
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",
