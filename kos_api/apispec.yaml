@@ -123,9 +123,14 @@ components:
         id:
           type: integer
           example: 4
+        kos_id:
+          type: integer
+          example: 4
         nama_fasilitas:
           type: string
           example: "dolorum"
+        kos:
+          type: object
 
     # Skema untuk objek KosImage
     KosImage:
