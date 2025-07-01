@@ -6,8 +6,7 @@ CREATE TABLE kos (
     tipe ENUM('putra', 'putri', 'campur') DEFAULT 'putra',
     alamat TEXT,
     harga BIGINT NOT NULL,
-    status_ketersedian ENUM('tersedia', 'penuh') DEFAULT 'tersedia',
-    url_foto VARCHAR(255),
+    status_ketersediaan ENUM('tersedia', 'penuh') DEFAULT 'tersedia',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id)

@@ -41,7 +41,7 @@ func (r *KostRepositoryImpl) FindAllKostRepository(filters web.FilterKostRequest
 	}
 
 	//eager loading
-	query = query.Preload("Fasilitas")
+	query = query.Preload("Fasilitas").Preload("KosImages")
 	err := query.Find(&kos).Error
 	if err != nil {
 		return nil, err
@@ -53,7 +53,7 @@ func (r *KostRepositoryImpl) FindByIDKostRepository(id uint) (domain.Kos, error)
 	var kos domain.Kos
 
 	//Preload berdasarkan id => "where id = ?"
-	err := r.db.Preload("Fasilitas").First(&kos, id).Error // &kos => simpan data di variable kos
+	err := r.db.Preload("Fasilitas").Preload("KosImages").First(&kos, id).Error // &kos => simpan data di variable kos
 	if err != nil {
 		return domain.Kos{}, err
 	}

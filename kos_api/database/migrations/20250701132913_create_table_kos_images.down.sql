@@ -1,0 +1,1 @@
+DROP TABLE kos_images IF EXISTS;
