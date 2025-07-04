@@ -33,6 +33,15 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
+    buildFeatures {
+        // Aktifkan Jetpack Compose
+        compose = true
+    }
+    composeOptions {
+        // Tentukan versi Kotlin Compiler Extension yang kompatibel
+        // dengan versi Kotlin Anda.
+        kotlinCompilerExtensionVersion = "1.5.1"
+    }
 }
 
 dependencies {
@@ -42,6 +51,19 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+
+    // DEPENDENSI BARU UNTUK JETPACK COMPOSE
+    implementation(platform("androidx.compose:compose-bom:2024.06.00"))
+    implementation("androidx.compose.ui:ui")
+    implementation("androidx.compose.ui:ui-graphics")
+    implementation("androidx.compose.foundation:foundation") // <-- Foundation biasanya diperlukan
+    implementation("androidx.compose.material3:material3")
+
+    // Dependensi untuk Advanced Graphics Path
+    implementation("androidx.graphics:graphics-path:1.0.1")
+
+    // Dependensi untuk memuat gambar (Coil)
+    implementation("io.coil-kt:coil-compose:2.6.0")
 
     //untuk arsitektur MVVM (viewmodel & livedata)
     implementation(libs.lifecycle.viewmodel.compose)
@@ -63,4 +85,12 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    // Dependensi Compose untuk UI Testing dan Preview Tooling
+    androidTestImplementation(platform("androidx.compose:compose-bom:2024.06.00"))
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
+    debugImplementation("androidx.compose.ui:ui-tooling")
+    debugImplementation("androidx.compose.ui:ui-test-manifest")
+    implementation("androidx.compose.ui:ui-tooling-preview")
+    implementation("androidx.compose.runtime:runtime-livedata")
 }
