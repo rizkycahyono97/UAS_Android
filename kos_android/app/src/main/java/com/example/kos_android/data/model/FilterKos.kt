@@ -9,6 +9,6 @@ data class FilterKos(
     val tipe: String? = null,
     val alamat: String? = null,
     val statusKetersediaan: String? = null,
-    val minHarga: Int? = null,
-    val maxHarga: Int? = null,
+    val minHarga: UInt? = null,
+    val maxHarga: UInt? = null,
 )

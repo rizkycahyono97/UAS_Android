@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         //memuat data pertama kali
-        kostViewModel.fetchAllKosts(FilterKos())
+        kostViewModel.fetchAllKosts()
 
         setContent {
             KosandroidTheme {

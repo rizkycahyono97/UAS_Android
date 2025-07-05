@@ -7,6 +7,8 @@ import androidx.lifecycle.viewModelScope
 import com.example.kos_android.data.model.FilterKos
 import com.example.kos_android.data.model.Kost
 import com.example.kos_android.repository.KostRepository
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 class KostViewModel(
@@ -16,6 +18,9 @@ class KostViewModel(
     private val _kostList = MutableLiveData<List<Kost>>()
     //publiv live data
     val kostList: LiveData<List<Kost>> = _kostList
+    //filter
+    private val _filters = MutableStateFlow(FilterKos())
+    val filters: StateFlow<FilterKos> = _filters
 
     //selected kost
     private val _selectedKost = MutableLiveData<Kost>()
@@ -33,11 +38,12 @@ class KostViewModel(
      * Fungsi untuk mengambil semua data kost dengan filter.
      * Dipanggil oleh UI.
      */
-    fun fetchAllKosts(filters: FilterKos) {
+    fun fetchAllKosts() {
+        val currentFilters = _filters.value
         viewModelScope.launch {
             _isLoading.postValue(true)
             try {
-                val result = kostRepository.getAllKosts(filters)
+                val result = kostRepository.getAllKosts(currentFilters)
                 //jika berhasil update LiveData
                 _kostList.postValue(result)
             } catch (e: Exception) {
@@ -69,4 +75,9 @@ class KostViewModel(
         }
     }
 
+    // Fungsi untuk jika menekan tombol filter
+    fun applyFilters(newFilters: FilterKos) {
+        _filters.value = newFilters
+        fetchAllKosts()
+    }
 }
