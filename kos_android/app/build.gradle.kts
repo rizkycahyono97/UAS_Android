@@ -40,7 +40,7 @@ android {
     composeOptions {
         // Tentukan versi Kotlin Compiler Extension yang kompatibel
         // dengan versi Kotlin Anda.
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.5.14"
     }
 }
 
