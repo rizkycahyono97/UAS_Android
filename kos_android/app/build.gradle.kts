@@ -58,6 +58,7 @@ dependencies {
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.foundation:foundation") // <-- Foundation biasanya diperlukan
     implementation("androidx.compose.material3:material3")
+    implementation("androidx.activity:activity-compose:1.9.0")
 
     // Dependensi untuk Advanced Graphics Path
     implementation("androidx.graphics:graphics-path:1.0.1")
