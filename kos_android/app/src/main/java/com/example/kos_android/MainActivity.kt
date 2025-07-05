@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
             KosandroidTheme {
                 KostListScreen(
                     viewModel = kostViewModel,
-                    onNavigationDetail = { kostId ->
+                    onNavigateToDetail = { kostId ->
                         // Logika untuk navigasi saat item diklik
                         // Untuk saat ini, kita hanya tampilkan Toast
                         Toast.makeText(
