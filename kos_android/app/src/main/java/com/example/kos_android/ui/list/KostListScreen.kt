@@ -23,7 +23,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.livedata.observeAsState
 import com.example.kos_android.ui.list.components.FilterBottomSheet
 
-// (BARU) Composable untuk bagian header
+// Composable untuk bagian header
 @Composable
 fun HeaderSection() {
     Row(
@@ -53,7 +53,7 @@ fun HeaderSection() {
     }
 }
 
-// (BARU) Composable untuk baris pencarian dan filter
+// Composable untuk baris pencarian dan filter
 @Composable
 fun SearchAndFilterBar(
     onFilterClick: () -> Unit

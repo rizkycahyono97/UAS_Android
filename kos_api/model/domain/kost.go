@@ -14,6 +14,9 @@ type Kos struct {
 	UpdatedAt          time.Time `json:"updated_at" gorm:"type:DATETIME;column:updated_at; autoUpdateTime"`
 	DeletedAt          time.Time `json:"deleted_at" gorm:"column:deleted_at;type:DATETIME;index"`
 
+	//BelongsTo Users
+	User Users `json:"user" gorm:"foreignKey:UserID"`
+
 	// M:M with fasilitas
 	Fasilitas []Fasilitas `json:"fasilitas" gorm:"many2many:kos_fasilitas"`
 	// 1:M with kos_images

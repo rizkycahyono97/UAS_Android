@@ -53,7 +53,7 @@ func (r *KostRepositoryImpl) FindByIDKostRepository(id uint) (domain.Kos, error)
 	var kos domain.Kos
 
 	//Preload berdasarkan id => "where id = ?"
-	err := r.db.Preload("Fasilitas").Preload("KosImages").First(&kos, id).Error // &kos => simpan data di variable kos
+	err := r.db.Preload("Fasilitas").Preload("KosImages").Preload("User").First(&kos, id).Error // &kos => simpan data di variable kos
 	if err != nil {
 		return domain.Kos{}, err
 	}

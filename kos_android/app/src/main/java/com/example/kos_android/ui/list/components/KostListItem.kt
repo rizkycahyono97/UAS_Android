@@ -17,6 +17,10 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.example.kos_android.data.model.Kost
 
+
+/*
+* composable untuk menampilkan semua item list
+* */
 @Composable
 fun KostListItem(
     kost: Kost,
@@ -107,7 +111,9 @@ fun KostListItem(
     }
 }
 
-// Composable terpisah untuk membuat "Tag" atau "Chip"
+/*
+* Composable  untuk membuat "Tag" yang mana untuk mengakses kost tertentu
+ */
 @Composable
 fun KostTag(text: String, backgroundColor: Color, contentColor: Color) {
     Surface(
