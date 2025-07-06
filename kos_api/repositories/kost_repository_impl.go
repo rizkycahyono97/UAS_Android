@@ -41,7 +41,7 @@ func (r *KostRepositoryImpl) FindAllKostRepository(filters web.FilterKostRequest
 	}
 
 	//eager loading
-	query = query.Preload("Fasilitas").Preload("KosImages")
+	query = query.Preload("Fasilitas").Preload("KosImages").Preload("User")
 	err := query.Find(&kos).Error
 	if err != nil {
 		return nil, err

@@ -2,7 +2,6 @@ package service
 
 import (
 	"github.com/go-playground/validator/v10"
-	"github.com/rizkycahyono97/UAS_Android/model/domain"
 	"github.com/rizkycahyono97/UAS_Android/model/web"
 	"github.com/rizkycahyono97/UAS_Android/repositories"
 )
@@ -19,7 +18,7 @@ func NewKostService(kostRepo repositories.KostRepository) KostService {
 	}
 }
 
-func (s *KostServiceImpl) GetAllKostService(filters web.FilterKostRequest) ([]domain.Kos, error) {
+func (s *KostServiceImpl) GetAllKostService(filters web.FilterKostRequest) ([]web.KostResponse, error) {
 	//validasi struct
 	err := s.validate.Struct(filters)
 	if err != nil {
@@ -32,21 +31,26 @@ func (s *KostServiceImpl) GetAllKostService(filters web.FilterKostRequest) ([]do
 		return nil, err
 	}
 
-	return kost, nil
+	kostDTO := web.FormatKosts(kost)
+
+	return kostDTO, nil
 }
 
-func (s *KostServiceImpl) GetByIDKostService(id uint) (domain.Kos, error) {
+func (s *KostServiceImpl) GetByIDKostService(id uint) (web.KosDetailResponse, error) {
 	//validate.Var untuk validasi satu variable
 	err := s.validate.Var(id, "required,gt=0")
 	if err != nil {
-		return domain.Kos{}, err
+		return web.KosDetailResponse{}, err
 	}
 
 	//repository
 	kost, err := s.kostRepo.FindByIDKostRepository(id)
 	if err != nil {
-		return domain.Kos{}, err
+		return web.KosDetailResponse{}, err
 	}
 
-	return kost, nil
+	//DTO
+	kostDTO := web.FormatDetailKos(kost)
+
+	return kostDTO, nil
 }

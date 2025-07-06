@@ -67,6 +67,12 @@ data class Kost(
     @SerializedName("deleted_at")
     val deletedAt: String,
 
+    @SerializedName("username")
+    val username: String,
+
+    @SerializedName("nomor_telepon")
+    val nomorTelepon: String,
+
     @SerializedName("fasilitas")
     val fasilitas: List<Fasilitas>,
 

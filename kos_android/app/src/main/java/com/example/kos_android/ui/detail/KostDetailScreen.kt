@@ -111,8 +111,8 @@ fun KostDetailScreen(
                             // Info Pemilik
                             Divider(modifier = Modifier.padding(vertical = 16.dp))
                             Text("Informasi Pemilik", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
-                            Text("Nama: ${kost!!.namaPemilik}")
-                            Text("Telepon: ${kost!!.teleponPemilik}")
+                            Text("Nama: ${kost!!.username}")
+                            Text("Telepon: ${kost!!.nomorTelepon}")
 
                             Spacer(modifier = Modifier.height(24.dp))
 
